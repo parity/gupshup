@@ -26,6 +26,8 @@ module Gupshup
       @api_params = {}
       @api_params[:userid] = opts[:userid]
       @api_params[:password] = opts[:password]
+      @api_params[:mask] = opts[:mask] if opts[:mask]
+      @api_params[:override_dnd] = opts[:override_dnd] || false
       @api_params[:v] = opts[:v] || '1.1'
       @api_params[:auth_scheme] = opts[:auth_scheme] || 'PLAIN'
       unless opts[:token].blank?
@@ -65,6 +67,7 @@ module Gupshup
       return false, 'Phone Number is too long' if number.to_s.length > 12
       #return false, 'Phone Number should start with "91"' if number.to_s.start_with? "91"
       return false, 'Phone Number should be numerical value' unless number.to_i.to_s == number.to_s
+      return false, 'Message cannot be empty' if msg.to_s.length == 0
       return false, 'Message should be less than 725 characters long' if msg.to_s.length > 724
       call_api opts.merge({ :method => 'sendMessage' })
     end

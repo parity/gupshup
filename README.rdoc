@@ -27,6 +27,14 @@ http://enterprise.smsgupshup.com/doc/GatewayAPIDoc.pdf
 
   gup = Gupshup::Enterprise.new(:userid => 'your_gupshup_login', :password => 'your_password')
 
+  #optional parameters
+    mask - An alphanumeric string with maximum length of 8 characters. Each enterprise account has a default mask. Each account can have multiple masks, preapproved by Enterprise Support team. If no mask is specified, the default mask is chosen.
+
+    override_dnd - Specifies if the message to be sent to a number listed in DND(Do Not Disturb) list. By default value is false
+
+    gup = Gupshup::Enterprise.new(:userid => 'your_gupshup_login', :password => 'your_password', :mask => 'maskname', :override_dnd => true)
+
+
   #send a normal text message
   gup.send_text_message(:msg => 'sms message text', :send_to => '91xxxxxxxxxx')
 
