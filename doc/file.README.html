@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.README.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'>
+<h1 id="label-gupshup">gupshup</h1>
+<ul><li>
+<p><a
+href="http://github.com/nileshtrivedi/gupshup">github.com/nileshtrivedi/gupshup</a></p>
+</li></ul>
+
+<h2 id="label-DESCRIPTION-3A">DESCRIPTION:</h2>
+
+<p>gupshup is a Ruby wrapper for the HTTP APIs provided by SMS GupShup which
+is a Group SMS Platform for the enterprises with advanced features such as
+masks, keywords, text/flash/vcard/bulk messages, advertising and keyword
+campaigns and so on.</p>
+
+<p>Documentation of HTTP APIs is available here: <a
+href="http://enterprise.smsgupshup.com/doc/GatewayAPIDoc.pdf">enterprise.smsgupshup.com/doc/GatewayAPIDoc.pdf</a></p>
+
+<h2 id="label-FEATURES-3A">FEATURES:</h2>
+<ul><li>
+<p>V 0.2.0 Return boolean status instead of raising exceptions. API_URL is now
+configurable.</p>
+</li><li>
+<p>V 0.1.5 Added group_post method and a generic call_api method. All methods
+now expect a hash of API params instead if individual arguments</p>
+</li><li>
+<p>V 0.1.2 Bulk file upload implemented. Only CSV format supported for now.</p>
+</li><li>
+<p>V 0.1.0 send_vcard and send_unicode_message implemented. Error checking.</p>
+</li><li>
+<p>V 0.0.5 send_text_message and send_flash_message are implemented</p>
+</li><li>
+<p>V 0.0.1 send_message is implemented.</p>
+</li></ul>
+
+<h2 id="label-USAGE-3A">USAGE:</h2>
+
+<pre class="code ruby"><code class="ruby"># &quot;target_phone_number&quot; should be a 12 digit Indian mobile number starting with &quot;91&quot; (either integer or string)
+
+gup = Gupshup::Enterprise.new(:userid =&gt; &#39;your_gupshup_login&#39;, :password =&gt; &#39;your_password&#39;)
+
+#optional parameters
+  mask - An alphanumeric string with maximum length of 8 characters. Each enterprise account has a default mask. Each account can have multiple masks, preapproved by Enterprise Support team. If no mask is specified, the default mask is chosen.
+
+  override_dnd - Specifies if the message to be sent to a number listed in DND(Do Not Disturb) list. By default value is false
+
+  gup = Gupshup::Enterprise.new(:userid =&gt; &#39;your_gupshup_login&#39;, :password =&gt; &#39;your_password&#39;, :mask =&gt; &#39;maskname&#39;, :override_dnd =&gt; true)
+
+#send a normal text message
+gup.send_text_message(:msg =&gt; &#39;sms message text&#39;, :send_to =&gt; &#39;91xxxxxxxxxx&#39;)
+
+#flash messages appear on mobile&#39;s screen immediately but may not be saved on some handsets
+gup.send_flash_message(:msg =&gt; &#39;sms message text&#39;, :send_to =&gt; &#39;91xxxxxxxxxx&#39;)
+
+#send a contact in VCARD format
+vcard = &quot;BEGIN:VCARD\r\nVERSION:1.2\r\nN:ICICI\r\nTEL:18002098888\r\nEND:VCARD&quot;
+gup.send_vcard(:msg =&gt; vcard, :send_to =&gt; &#39;91xxxxxxxxxx&#39;)
+
+#send a non-english message with a hex-encoded UTF-8 string
+gup.send_unicode_message(:msg =&gt; &quot;\xE0\xA4\x97\xE0\xA4\xAA\xE0\xA4\xB6\xE0\xA4\xAA&quot;, :send_to =&gt; &#39;91xxxxxxxxxx&#39;) # will send &quot;gupshup&quot; in Devnagari script
+
+#Upload a CSV file for bulk messages
+gup.bulk_file_upload(file_path)</code></pre>
+
+<h2 id="label-REQUIREMENTS-3A">REQUIREMENTS:</h2>
+<ul><li>
+<p>httpclient</p>
+</li></ul>
+
+<h2 id="label-INSTALL-3A">INSTALL:</h2>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_sudo'>sudo</span> <span class='id identifier rubyid_gem'>gem</span> <span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_gupshup'>gupshup</span>
+</code></pre>
+</div></div>
+
+    <div id="footer">
+  Generated on Wed Jun  3 12:45:53 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.2.0).
+</div>
+
+  </body>
+</html>
