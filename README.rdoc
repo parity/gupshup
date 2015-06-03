@@ -1,6 +1,6 @@
 = gupshup
 
-* http://github.com/nileshtrivedi/gupshup
+* http://github.com/parity/gupshup
 
 == DESCRIPTION:
 
