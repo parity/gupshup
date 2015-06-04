@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.files = ["History.txt", "Manifest.txt", "PostInstall.txt", "README.rdoc", "Rakefile", "lib/parity-gupshup.rb", "script/console", "script/destroy", "script/generate", "test/test_gupshup.rb", "test/test_helper.rb"]
   s.homepage = %q{http://github.com/parity/gupshup}
   s.post_install_message = %q{PostInstall.txt}
-  #s.rdoc_options = ["--main", "README.rdoc"]
+  s.rdoc_options = ["--main", "README.rdoc"]
   s.require_paths = ["lib"]
   s.rubyforge_project = "parity-gupshup"
   s.rubygems_version = %q{1.3.5}
