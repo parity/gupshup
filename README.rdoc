@@ -2,7 +2,7 @@
 
 * http://github.com/parity/gupshup
 
-== DESCRIPTION:
+== DESCRIPTION
 
 gupshup is a Ruby wrapper for the HTTP APIs provided by SMS GupShup which
 is a Group SMS Platform for the enterprises with advanced features such as
@@ -12,7 +12,7 @@ campaigns and so on.
 Documentation of HTTP APIs is available here:
 http://enterprise.smsgupshup.com/doc/GatewayAPIDoc.pdf
 
-== FEATURES:
+== FEATURES
 
 * V 0.2.0 Return boolean status instead of raising exceptions. API_URL is now configurable.
 * V 0.1.5 Added group_post method and a generic call_api method. All methods now expect a hash of API params instead if individual arguments
@@ -55,8 +55,13 @@ http://enterprise.smsgupshup.com/doc/GatewayAPIDoc.pdf
 
 * httpclient
 
-== INSTALL:
+== Installation
+  *Include the gem in your Gemfile:
 
- sudo gem install parity-gupshup
+  gem 'parity-gupshup', '~> 1.0.0'
+
+  *Or
+
+  sudo gem install parity-gupshup
  
  
