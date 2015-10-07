@@ -58,7 +58,7 @@ http://enterprise.smsgupshup.com/doc/GatewayAPIDoc.pdf
 == Installation
   * Include the gem in your Gemfile:
 
-  gem 'parity-gupshup', '~> 1.0.0'
+  gem 'parity-gupshup', '~> 2.0.0'
 
   * Or
 
