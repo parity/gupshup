@@ -21,7 +21,7 @@ http://enterprise.smsgupshup.com/doc/GatewayAPIDoc.pdf
 * V 0.0.5 send_text_message and send_flash_message are implemented
 * V 0.0.1 send_message is implemented.
 
-== USAGE:
+== USAGE
 
   # "target_phone_number" should be a 12 digit Indian mobile number starting with "91" (either integer or string)
 
@@ -51,16 +51,16 @@ http://enterprise.smsgupshup.com/doc/GatewayAPIDoc.pdf
   #Upload a CSV file for bulk messages
   gup.bulk_file_upload(file_path)
 
-== REQUIREMENTS:
+== REQUIREMENTS
 
 * httpclient
 
 == Installation
-  *Include the gem in your Gemfile:
+  * Include the gem in your Gemfile:
 
   gem 'parity-gupshup', '~> 1.0.0'
 
-  *Or
+  * Or
 
   sudo gem install parity-gupshup
  
