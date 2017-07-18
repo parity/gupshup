@@ -22,7 +22,7 @@ module Gupshup
   VERSION = '0.2.1'
   class Enterprise
     def initialize(opts)
-      @api_url = opts[:api_url] || 'http://enterprise.smsgupshup.com/GatewayAPI/rest'
+      @api_url = opts[:api_url] || 'https://enterprise.smsgupshup.com/GatewayAPI/rest'
       @api_params = {}
       @api_params[:userid] = opts[:userid]
       @api_params[:password] = opts[:password]
@@ -67,6 +67,25 @@ module Gupshup
       return false, 'Phone Number is too long' if number.to_s.length > 12
       #return false, 'Phone Number should start with "91"' if number.to_s.start_with? "91"
       return false, 'Phone Number should be numerical value' unless number.to_i.to_s == number.to_s
+      return false, 'Message cannot be empty' if msg.to_s.length == 0
+      return false, 'Message should be less than 725 characters long' if msg.to_s.length > 724
+      call_api opts.merge({ :method => 'sendMessage' })
+    end
+    
+    def send_bulk_message(opts)
+      msg = opts[:msg]
+      numbers = opts[:send_to]
+      msg_type = opts[:msg_type] || 'TEXT'
+      @api_params[:v] = '1.0' # Only available in 1.0 API of GupShup.
+
+      return false, "Sending to 100 numbers max allowed at a time" if numbers.length > 100      
+      numbers.split(",").each do |number|
+        return false, 'Phone Number is too short' if number.to_s.length < 12
+        return false, 'Phone Number is too long' if number.to_s.length > 12
+        #return false, 'Phone Number should start with "91"' if number.to_s.start_with? "91"
+        return false, 'Phone Number should be numerical value' unless number.to_i.to_s == number.to_s
+      end
+      
       return false, 'Message cannot be empty' if msg.to_s.length == 0
       return false, 'Message should be less than 725 characters long' if msg.to_s.length > 724
       call_api opts.merge({ :method => 'sendMessage' })
