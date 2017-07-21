@@ -78,7 +78,7 @@ module Gupshup
       msg_type = opts[:msg_type] || 'TEXT'
       @api_params[:v] = '1.0' # Only available in 1.0 API of GupShup.
 
-      return false, "Sending to 100 numbers max allowed at a time" if numbers.length > 100      
+      return false, "Sending to 100 numbers max allowed at a time" if numbers.split(",").size > 100      
       numbers.split(",").each do |number|
         return false, 'Phone Number is too short' if number.to_s.length < 12
         return false, 'Phone Number is too long' if number.to_s.length > 12
